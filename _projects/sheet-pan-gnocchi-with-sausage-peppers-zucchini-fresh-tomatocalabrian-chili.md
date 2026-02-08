@@ -49,7 +49,7 @@ ingredients:
   unit: oz
   food_group: milk
   servings_per_person: 0.5
-layout: page
+layout: recipe
 importance: 1
 category: ''
 ---

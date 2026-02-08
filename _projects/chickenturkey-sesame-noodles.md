@@ -43,7 +43,7 @@ ingredients:
   unit: tbsp
   food_group: fat
   servings_per_person: 0.5
-layout: page
+layout: recipe
 importance: 1
 category: ''
 ---

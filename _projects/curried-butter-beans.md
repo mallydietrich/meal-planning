@@ -64,7 +64,7 @@ ingredients:
   unit: tsp
   food_group: free
   servings_per_person: 0.0
-layout: page
+layout: recipe
 importance: 1
 category: Indian
 ---

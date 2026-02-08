@@ -38,7 +38,7 @@ ingredients:
   unit: cup
   food_group: vegetable
   servings_per_person: 0.1
-layout: page
+layout: recipe
 importance: 1
 category: ''
 ---

@@ -30,7 +30,7 @@ ingredients:
   unit: tbsp
   food_group: fat
   servings_per_person: 1.0
-layout: page
+layout: recipe
 importance: 1
 category: Mediterranean
 ---

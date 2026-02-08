@@ -8,7 +8,7 @@ meal_type:
 - lunch
 total_servings: 2
 ingredients: []
-layout: page
+layout: recipe
 importance: 1
 category: ''
 ---
