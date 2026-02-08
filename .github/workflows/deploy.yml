@@ -93,3 +93,50 @@ jobs:
         with:
           folder: _site
           branch: gh-pages # Ensure it deploys to the branch you created
+      - name: Notify Discord 📣
+        if: github.event_name != 'pull_request' && env.DISCORD_WEBHOOK_URL != ''
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          pip install pyyaml
+          python3 << 'EOF'
+          import yaml, datetime, json, urllib.request, os, glob
+
+          plan_files = sorted(glob.glob("data/plans/*.yaml"))
+          if not plan_files:
+              print("No plan files found, skipping notification")
+              raise SystemExit(0)
+
+          with open(plan_files[-1]) as f:
+              plan = yaml.safe_load(f)
+
+          week_num = plan["week_number"]
+          finalized = plan.get("finalized_at", "")
+          if finalized:
+              dt = datetime.datetime.fromisoformat(finalized.replace("Z", "+00:00"))
+              date_str = dt.strftime("%Y-%m-%d")
+          else:
+              date_str = datetime.date.today().isoformat()
+
+          days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+          lines = []
+          for day in days:
+              meals = plan["days"].get(day, {})
+              lunch = meals.get("lunch", "-")
+              dinner = meals.get("dinner", "-")
+              lines.append(f"**{day.capitalize()}** — {lunch} / {dinner}")
+
+          schedule = "\n".join(lines)
+          plan_url = f"https://mallydietrich.github.io/meal-planning/plans/{date_str}-week-{week_num}-plan/"
+          message = f"📋 **Here's your weekly plan!**\n\n{schedule}\n\n🔗 Full plan & grocery list: {plan_url}"
+
+          payload = json.dumps({"content": message}).encode("utf-8")
+          req = urllib.request.Request(
+              os.environ["DISCORD_WEBHOOK_URL"],
+              data=payload,
+              headers={"Content-Type": "application/json"},
+              method="POST",
+          )
+          urllib.request.urlopen(req)
+          print(f"Discord notification sent for Week {week_num}")
+          EOF
