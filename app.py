@@ -58,11 +58,11 @@ with tab1:
 
         lunch = meals.get('lunch', 'Relish')
         l_idx = options.index(lunch) if lunch in options else 0
-        new_lunch = st.selectbox(f"🥗 Lunch", options=options, index=l_idx, key=f"lunch_{day}")
+        new_lunch = st.selectbox(f"🥗 Lunch", options=options, index=l_idx, key=f"w{week_num}_lunch_{day}")
 
         dinner = meals.get('dinner', 'Dining Out')
         d_idx = options.index(dinner) if dinner in options else 0
-        new_dinner = st.selectbox(f"🥘 Dinner", options=options, index=d_idx, key=f"dinner_{day}")
+        new_dinner = st.selectbox(f"🥘 Dinner", options=options, index=d_idx, key=f"w{week_num}_dinner_{day}")
 
         updated_days[day] = {"lunch": new_lunch, "dinner": new_dinner}
 
