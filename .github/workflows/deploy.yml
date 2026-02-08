@@ -94,6 +94,7 @@ jobs:
           folder: _site
           branch: gh-pages # Ensure it deploys to the branch you created
       - name: Notify Discord 📣
+        continue-on-error: true
         if: github.event_name != 'pull_request' && env.DISCORD_WEBHOOK_URL != ''
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
