@@ -1,14 +1,14 @@
 ---
 layout: about
-title: 👩‍🍳 The Meal Engine
+title: The Meal Engine
 permalink: /
 subtitle: <a href="https://mallydietrich.streamlit.app">Edit Plan</a>
 
-news: false  # don't show plan logs on home page
+news: false
 selected_papers: false
 social: false
 ---
 
-Welcome to **The Meal Engine**. 
+**The Meal Engine** is an automated meal planning system that generates weekly schedules and grocery lists from a curated recipe collection. Recipes are sourced from Blue Apron and adapted for flexible, portion-aware planning.
 
-Use the navigation bar above to view your **Recipes** or browse the **Plan Archive** to see your recent schedules and grocery lists.
+Browse your **[Recipes](/meal-planning/recipes/)** to explore the full collection, or check the **[Plan Archive](/meal-planning/archive/)** for past weekly schedules and grocery lists.
