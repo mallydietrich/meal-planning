@@ -58,11 +58,36 @@ class Planner:
         self._save_state()
     
     def get_available_recipes(self) -> list:
-        """List all available recipe titles (based on filenames)."""
+        """List all available recipe titles (parsed from frontmatter)."""
         recipes_dir = self.data_dir.parent / "recipes"
-        # We'll use a simple name-based approach for now. 
-        # In a real app, we'd parse the YAML 'title' field for accuracy.
-        return [f.stem for f in recipes_dir.glob("*.md")]
+        titles = []
+        for f in recipes_dir.glob("*.md"):
+            try:
+                with open(f, 'r') as file:
+                    content = file.read()
+                    # Simple frontmatter title parser to avoid heavy imports if possible
+                    # but we already have models.py
+                    from src.models import Recipe
+                    recipe = Recipe.from_markdown(content)
+                    titles.append(recipe.title)
+            except Exception:
+                titles.append(f.stem)
+        return titles
+
+    def get_recipe_path_by_title(self, title: str) -> Optional[Path]:
+        """Find the filename for a given recipe title."""
+        recipes_dir = self.data_dir.parent / "recipes"
+        for f in recipes_dir.glob("*.md"):
+            try:
+                with open(f, 'r') as file:
+                    from src.models import Recipe
+                    recipe = Recipe.from_markdown(file.read())
+                    if recipe.title == title:
+                        return f
+            except Exception:
+                if f.stem == title:
+                    return f
+        return None
 
     def is_status_meal(self, meal_name: str) -> bool:
         """Check if a meal is a status placeholder (Relish, Quick-Bake, Dining Out)."""

@@ -14,10 +14,29 @@ class Ingredient:
     def __init__(self, **kwargs):
         # Mandatory fields
         self.name = kwargs.pop('name')
-        self.quantity = float(kwargs.pop('quantity', 0.0))
+        
+        # Handle fractional strings like '1/2'
+        qty_raw = kwargs.pop('quantity', 0.0)
+        if isinstance(qty_raw, str) and '/' in qty_raw:
+            try:
+                num, den = qty_raw.split('/')
+                self.quantity = float(num) / float(den)
+            except (ValueError, ZeroDivisionError):
+                self.quantity = 0.0
+        else:
+            try:
+                self.quantity = float(qty_raw)
+            except (ValueError, TypeError):
+                self.quantity = 0.0
+                
         self.unit = kwargs.pop('unit', '')
         self.food_group = kwargs.pop('food_group', '')
-        self.servings_per_person = float(kwargs.pop('servings_per_person', 0.0))
+        
+        try:
+            self.servings_per_person = float(kwargs.pop('servings_per_person', 0.0))
+        except (ValueError, TypeError):
+            self.servings_per_person = 0.0
+            
         # Catch everything else
         self.extra_data = kwargs
 
