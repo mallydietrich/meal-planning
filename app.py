@@ -49,18 +49,18 @@ with tab1:
 
     updated_days = {}
     available_recipes = st.session_state.planner.get_available_recipes()
-    status_meals = ["Relish", "Quick-Bake", "Dining Out"]
+    status_meals = ["TBD", "Relish", "Quick-Bake", "Dining Out"]
     options = status_meals + sorted(available_recipes)
 
     # Display Plan
     for day, meals in draft['days'].items():
         st.markdown(f"### {day.capitalize()}")
 
-        lunch = meals.get('lunch', 'Relish')
+        lunch = meals.get('lunch') or 'TBD'
         l_idx = options.index(lunch) if lunch in options else 0
         new_lunch = st.selectbox(f"🥗 Lunch", options=options, index=l_idx, key=f"w{week_num}_lunch_{day}")
 
-        dinner = meals.get('dinner', 'Dining Out')
+        dinner = meals.get('dinner') or 'TBD'
         d_idx = options.index(dinner) if dinner in options else 0
         new_dinner = st.selectbox(f"🥘 Dinner", options=options, index=d_idx, key=f"w{week_num}_dinner_{day}")
 
@@ -103,7 +103,7 @@ with tab1:
             for day in day_order:
                 meals = updated_days.get(day, {})
                 for title in [meals.get("lunch", "-"), meals.get("dinner", "-")]:
-                    if title not in ["Relish", "Quick-Bake", "Dining Out", "-"]:
+                    if title not in ["TBD", "Relish", "Quick-Bake", "Dining Out", "-"]:
                         recipe_path = st.session_state.planner.get_recipe_path_by_title(title)
                         if recipe_path:
                             with open(recipe_path, "r") as f:
