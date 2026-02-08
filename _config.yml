@@ -46,6 +46,7 @@ plugins:
   - jemoji
   - jekyll-email-protect
   - jekyll-twitter-plugin
+  - jekyll-socials
 
 # al-folio specific settings (External libraries)
 cdn_url: "https://cdn.jsdelivr.net/npm"
