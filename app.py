@@ -83,7 +83,7 @@ with tab2:
     if selected_recipe_title:
         recipe_actual_path = st.session_state.planner.get_recipe_path_by_title(selected_recipe_title)
         if recipe_actual_path:
-            repo_relative_path = f"recipes/{recipe_actual_path.name}"
+            repo_relative_path = f"_projects/{recipe_actual_path.name}"
             try:
                 raw_content = st.session_state.github_client.get_file_content(repo_relative_path)
                 recipe = Recipe.from_markdown(raw_content)

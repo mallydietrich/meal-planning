@@ -37,7 +37,7 @@ def scale_recipe(recipe: Recipe, targets, food_db: FoodDatabase):
 def main():
     repo_root = Path(__file__).parent.parent
     v2_recipes_dir = Path("/Users/mally/Downloads/Meal Plan v2/recipes")
-    output_dir = repo_root / "recipes"
+    output_dir = repo_root / "_projects"
     
     targets = load_targets(repo_root / "data/database/serving_targets.yaml")
     food_db = FoodDatabase(repo_root / "data/database/food_db.csv")

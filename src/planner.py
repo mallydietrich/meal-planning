@@ -59,7 +59,7 @@ class Planner:
     
     def get_available_recipes(self) -> list:
         """List all available recipe titles (parsed from frontmatter)."""
-        recipes_dir = self.data_dir.parent / "recipes"
+        recipes_dir = self.data_dir.parent / "_projects"
         titles = []
         for f in recipes_dir.glob("*.md"):
             try:
@@ -76,7 +76,7 @@ class Planner:
 
     def get_recipe_path_by_title(self, title: str) -> Optional[Path]:
         """Find the filename for a given recipe title."""
-        recipes_dir = self.data_dir.parent / "recipes"
+        recipes_dir = self.data_dir.parent / "_projects"
         for f in recipes_dir.glob("*.md"):
             try:
                 with open(f, 'r') as file:
