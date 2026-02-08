@@ -1,0 +1,201 @@
+# 8-Week Meal Cycle (No Dinner Repeats)
+# Special Rules:
+#   - Mon/Wed Lunch: Prep-ahead salads (DBS, Pasta Salads, TJ's Salads). Used once per week.
+#   - Tue/Thu/Fri Lunch: Relish (External).
+#   - Wed Dinner: Quick-Bake (Wegmans pre-made).
+#   - Tue Dinner: Dining Out (Hockey Night).
+#   - Sat Dinner: Dining Out (Standard).
+#   - Weekend Lunch: Fresh salads or specific items.
+
+cycles:
+  - week: 1
+    days:
+      monday:
+        lunch: "Steak Chimichurri Dense Bean Salad"
+        dinner: "Oven-Baked Cheesy Pesto Gnocchi"
+      tuesday:
+        lunch: "Relish"
+        dinner: "Dining Out" # Hockey Night
+      wednesday:
+        lunch: "Steak Chimichurri Dense Bean Salad"
+        dinner: "Quick-Bake"
+      thursday:
+        lunch: "Relish"
+        dinner: "Harissa Beef Pitas"
+      friday:
+        lunch: "Relish"
+        dinner: "Pasta and Sauce"
+      saturday:
+        lunch: "Seared Chicken & Kale Salad"
+        dinner: "Dining Out"
+      sunday:
+        lunch: "Pesto Chickpea Grain Bowls"
+        dinner: "Oregano Steaks & Tzatziki Panzanella"
+
+  - week: 2
+    days:
+      monday:
+        lunch: "Kale Caesar White Bean Salad"
+        dinner: "Hot Honey Chicken"
+      tuesday:
+        lunch: "Relish"
+        dinner: "Dining Out"
+      wednesday:
+        lunch: "Kale Caesar White Bean Salad"
+        dinner: "Quick-Bake"
+      thursday:
+        lunch: "Relish"
+        dinner: "Cheesy Chorizo & Delicata Bake"
+      friday:
+        lunch: "Relish"
+        dinner: "Oven-Baked Cheesy Tomato Gnocchi"
+      saturday:
+        lunch: "Curried Butter Beans"
+        dinner: "Dining Out"
+      sunday:
+        lunch: "Pesto Chickpea Grain Bowls"
+        dinner: "TJ's Dumpling Bake"
+
+  - week: 3
+    days:
+      monday:
+        lunch: "TJ's Broccoli Slaw & Kale Salad"
+        dinner: "Oven-Baked White Bean Shakshuka"
+      tuesday:
+        lunch: "Relish"
+        dinner: "Dining Out"
+      wednesday:
+        lunch: "TJ's Broccoli Slaw & Kale Salad"
+        dinner: "Quick-Bake"
+      thursday:
+        lunch: "Relish"
+        dinner: "Spicy Mushroom & Onion Quesadillas"
+      friday:
+        lunch: "Relish"
+        dinner: "Oven-Baked Italian Sausage & Gnocchi"
+      saturday:
+        lunch: "Southwest Dense Bean Salad"
+        dinner: "Dining Out"
+      sunday:
+        lunch: null
+        dinner: "Poblano Pepper & Onion Quesadillas"
+
+  - week: 4
+    days:
+      monday:
+        lunch: "Greek Pasta Salad"
+        dinner: "Garlic-Caper Chicken"
+      tuesday:
+        lunch: "Relish"
+        dinner: "Dining Out"
+      wednesday:
+        lunch: "Greek Pasta Salad"
+        dinner: "Quick-Bake"
+      thursday:
+        lunch: "Relish"
+        dinner: "Calabrian Chile-Glazed Meatloaf"
+      friday:
+        lunch: "Relish"
+        dinner: "Oven-Baked Pesto Gnocchi & Sausage"
+      saturday:
+        lunch: "Dense Bean Salad: Miso"
+        dinner: "Dining Out"
+      sunday:
+        lunch: null
+        dinner: "Oven-Baked White Bean Chili & Cornbread"
+
+  - week: 5
+    days:
+      monday:
+        lunch: "Hot Honey Pasta Salad"
+        dinner: "Seared Chicken & Creamy Italian Dressing"
+      tuesday:
+        lunch: "Relish"
+        dinner: "Dining Out"
+      wednesday:
+        lunch: "Hot Honey Pasta Salad"
+        dinner: "Quick-Bake"
+      thursday:
+        lunch: "Relish"
+        dinner: "One-Pan Chickpea & Curry Shakshuka"
+      friday:
+        lunch: "Relish"
+        dinner: "Sheet-Pan Gnocchi with Sausage, Peppers, Zucchini & Fresh Tomato–Calabrian Chili"
+      saturday:
+        lunch: null
+        dinner: "Dining Out"
+      sunday:
+        lunch: null
+        dinner: "Chicken/Turkey Sesame Noodles"
+
+  - week: 6
+    days:
+      monday:
+        lunch: "Dense Bean Salad: Charcuterie"
+        dinner: "Creamy White Beans & Eggs"
+      tuesday:
+        lunch: "Relish"
+        dinner: "Dining Out"
+      wednesday:
+        lunch: "Dense Bean Salad: Charcuterie"
+        dinner: "Quick-Bake"
+      thursday:
+        lunch: "Relish"
+        dinner: "Italian Meatloaf & Spicy Ketchup"
+      friday:
+        lunch: "Relish"
+        dinner: "TJ's Orange Chicken"
+      saturday:
+        lunch: null
+        dinner: "Dining Out"
+      sunday:
+        lunch: null
+        dinner: "White Bean and Pesto Bake"
+
+  - week: 7
+    days:
+      monday:
+        lunch: "Dense Bean Salad: Miso"
+        dinner: "Oven-Baked Cornbread Chili Casserole"
+      tuesday:
+        lunch: "Relish"
+        dinner: "Dining Out"
+      wednesday:
+        lunch: "Dense Bean Salad: Miso"
+        dinner: "Quick-Bake"
+      thursday:
+        lunch: "Relish"
+        dinner: "Grilled Chicken Thighs & Nectarine Panzanella"
+      friday:
+        lunch: "Relish"
+        dinner: "Turkey Taco Bowls"
+      saturday:
+        lunch: "Turkey Taco Bowls"
+        dinner: "Dining Out"
+      sunday:
+        lunch: "Honey Mustard Chicken & Farro Salad"
+        dinner: "Calabrian Chicken & Orzo"
+
+  - week: 8
+    days:
+      monday:
+        lunch: "Southwest Dense Bean Salad"
+        dinner: "Turkey Piccata Meatballs"
+      tuesday:
+        lunch: "Relish"
+        dinner: "Dining Out"
+      wednesday:
+        lunch: "Southwest Dense Bean Salad"
+        dinner: "Quick-Bake"
+      thursday:
+        lunch: "Relish"
+        dinner: "Calabrian Beef & Gnocchi"
+      friday:
+        lunch: "Relish"
+        dinner: "Pork Chorizo Potato & Fig Bake"
+      saturday:
+        lunch: null
+        dinner: "Dining Out"
+      sunday:
+        lunch: null
+        dinner: "Summer Sausage with Creamy Pesto"

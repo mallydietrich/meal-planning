@@ -1,0 +1,46 @@
+people: 2
+target_groups:
+- name: Protein, Milk
+  food_groups:
+  - protein
+  - milk
+  targets:
+    breakfast: 2.0
+    snack: 1.0
+    lunch: 4.0
+    dinner: 4.0
+- name: Fruit, Starch
+  food_groups:
+  - fruit
+  - starch
+  targets:
+    breakfast: 3.0
+    snack: 1.0
+    lunch: 2.0
+    dinner: 2.0
+- name: Vegetable
+  food_groups:
+  - vegetable
+  targets:
+    lunch: 3.0
+    dinner: 3.0
+- name: Fat
+  food_groups:
+  - fat
+  targets:
+    breakfast: 1.0
+    lunch: 1.0
+    dinner: 1.0
+- name: Free
+  food_groups:
+  - free
+  targets:
+    breakfast: 1.0
+    lunch: 1.0
+    dinner: 1.0
+calorie_targets:
+  breakfast: 395.0
+  snack: 125.0
+  lunch: 510.0
+  dinner: 510.0
+  total: 1665.0
