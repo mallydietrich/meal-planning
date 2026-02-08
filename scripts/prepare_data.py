@@ -6,7 +6,7 @@ from src.models import Recipe
 from src.shopping import ShoppingCart
 
 def get_recipe_by_title(repo_root: Path, title: str) -> Recipe:
-    recipes_dir = repo_root / "recipes"
+    recipes_dir = repo_root / "_projects"
     for f in recipes_dir.glob("*.md"):
         try:
             with open(f, 'r') as file:
@@ -29,27 +29,7 @@ def prepare_jekyll_data():
     news_dir.mkdir(exist_ok=True)
     projects_dir.mkdir(exist_ok=True)
 
-    # 1. Sync recipes to _projects
-    all_recipe_files = list((repo_root / "recipes").glob("*.md"))
-    for rf in all_recipe_files:
-        target = projects_dir / rf.name
-        try:
-            with open(rf, 'r') as f:
-                content = f.read()
-            if '---' in content:
-                parts = content.split('---', 2)
-                meta = yaml.safe_load(parts[1])
-                meta['layout'] = 'page'
-                meta['importance'] = 1
-                meta['category'] = meta.get('cuisine', 'Other')
-                
-                new_content = f"---\n{yaml.dump(meta, sort_keys=False)}---\n{parts[2]}"
-                with open(target, 'w') as f:
-                    f.write(new_content)
-        except Exception as e:
-            print(f"Error syncing recipe {rf.name}: {e}")
-
-    # 2. Process latest plan
+    # 1. Process latest plan
     plan_files = sorted(plans_dir.glob("*.yaml"))
     if not plan_files:
         print("No plans found.")
