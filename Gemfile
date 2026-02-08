@@ -13,6 +13,6 @@ gem "jekyll-twitter-plugin"
 gem "jemoji"
 gem "webrick", "~> 1.8"
 gem "i18n"
+gem "feedjira"
+gem "httparty"
 gem "bibtex-ruby"
-# gem "academicons" # removing for now
-# gem "unicodeutils" # removing for now
