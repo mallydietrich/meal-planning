@@ -39,7 +39,7 @@ collections:
 # -----------------------------------------------------------------------------
 # Jekyll Settings
 # -----------------------------------------------------------------------------
-theme: minima # Minimal base, al-folio uses its own layouts
+# theme: minima # Removed to use al-folio local files
 plugins:
   - jekyll-feed
   - jekyll-sitemap
