@@ -1,0 +1,40 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      {% if page.cuisine %}<span>{{ page.cuisine }}</span>{% endif %}
+      {% if page.protein_type %} • <span>{{ page.protein_type }}</span>{% endif %}
+      {% if page.source %} • <a href="{{ page.source }}">Original Source</a>{% endif %}
+    </p>
+  </header>
+
+  <div class="post-content">
+    <h3>🛒 Ingredients</h3>
+    <ul>
+      {% for ingredient in page.ingredients %}
+        <li>
+          {{ ingredient.quantity }} {{ ingredient.unit }} <strong>{{ ingredient.name }}</strong>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h3>🍳 Instructions</h3>
+    {{ content }}
+  </div>
+
+  <div class="post-tags">
+    {% for tag in page.tags %}
+      <span class="tag">#{{ tag }}</span>
+    {% endfor %}
+  </div>
+</article>
+
+<style>
+  .post-meta { color: #666; font-size: 0.9em; margin-bottom: 2em; }
+  .tag { background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-right: 5px; }
+  ul { list-style-type: none; padding-left: 0; }
+  li { margin-bottom: 0.5em; padding-bottom: 0.5em; border-bottom: 1px dotted #ccc; }
+</style>
