@@ -1,7 +1,7 @@
 import streamlit as st
 import yaml
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 from src.github_client import GitHubClient
 from src.planner import Planner
 from src.models import Recipe
@@ -67,11 +67,11 @@ with tab1:
         updated_days[day] = {"lunch": new_lunch, "dinner": new_dinner}
 
     if st.button("Save & Finalize Plan"):
-        finalized_at = datetime.now().isoformat()
+        today = datetime.now().date()
         final_plan = {
             "week_number": week_num,
             "days": updated_days,
-            "finalized_at": finalized_at,
+            "finalized_at": today.isoformat(),
         }
 
         plan_filename = f"data/plans/2026-W{week_num:02d}.yaml"
@@ -84,18 +84,31 @@ with tab1:
             )
 
             # 2. Generate Jekyll post for _news/
-            dt = datetime.fromisoformat(finalized_at)
-            date_str = dt.strftime("%Y-%m-%d")
-            post_name = f"_news/{date_str}-week-{week_num}-plan.md"
+            date_str = today.isoformat()
+            post_name = f"_news/{date_str}-meal-plan.md"
 
-            # Build schedule table
+            # Compute the Monday of this week for the title
+            monday = today - timedelta(days=today.weekday())
+            week_of_str = monday.strftime("%B %-d, %Y")
+
+            # Build schedule table with recipe links
             day_order = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+            status_set = {"TBD", "Relish", "Quick-Bake", "Dining Out", "-"}
             plan_table = "| Day | Lunch | Dinner |\n| :--- | :--- | :--- |\n"
+
+            def meal_cell(title):
+                if title in status_set:
+                    return title
+                slug = st.session_state.planner.get_recipe_path_by_title(title)
+                if slug:
+                    return f"[{title}](/meal-planning/recipes/{slug.stem}/)"
+                return title
+
             for day in day_order:
                 meals = updated_days.get(day, {})
                 lunch_title = meals.get("lunch", "-")
                 dinner_title = meals.get("dinner", "-")
-                plan_table += f"| **{day.capitalize()}** | {lunch_title} | {dinner_title} |\n"
+                plan_table += f"| **{day.capitalize()}** | {meal_cell(lunch_title)} | {meal_cell(dinner_title)} |\n"
 
             # Build grocery list
             cart = ShoppingCart()
@@ -103,7 +116,7 @@ with tab1:
             for day in day_order:
                 meals = updated_days.get(day, {})
                 for title in [meals.get("lunch", "-"), meals.get("dinner", "-")]:
-                    if title not in ["TBD", "Relish", "Quick-Bake", "Dining Out", "-"]:
+                    if title not in status_set:
                         recipe_path = st.session_state.planner.get_recipe_path_by_title(title)
                         if recipe_path:
                             with open(recipe_path, "r") as f:
@@ -119,8 +132,8 @@ with tab1:
             # Build post content
             frontmatter = yaml.dump({
                 "layout": "post",
-                "title": f"Meal Plan: Week {week_num}",
-                "date": dt.strftime("%Y-%m-%d %H:%M:%S"),
+                "title": f"Meal Planning: Week of {week_of_str}",
+                "date": date_str,
                 "inline": False,
                 "related_posts": False,
             }, sort_keys=False)
@@ -132,7 +145,9 @@ with tab1:
                 post_name, post_content, f"Publish Week {week_num} meal plan post"
             )
 
-            st.success(f"Plan finalized and published! Saved to `{plan_filename}` and `{post_name}`.")
+            plan_url = f"https://mallydietrich.github.io/meal-planning/plans/{date_str}-meal-plan/"
+            st.success("Thanks! We got your submission. You should see it live on GitHub Pages shortly!")
+            st.markdown(f"[View your plan on GitHub Pages]({plan_url})")
             st.balloons()
 
         except Exception as e:

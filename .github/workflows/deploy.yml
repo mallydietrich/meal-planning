@@ -15,6 +15,7 @@ on:
       - "**.liquid"
       - "**/*.md"
       - "**.yml"
+      - "**.yaml"
       - "Gemfile"
       - "Gemfile.lock"
       - "!.github/workflows/axe.yml"
@@ -44,6 +45,7 @@ on:
       - "**.liquid"
       - "**/*.md"
       - "**.yml"
+      - "**.yaml"
       - "Gemfile"
       - "Gemfile.lock"
       - "!.github/workflows/axe.yml"
@@ -95,17 +97,17 @@ jobs:
           branch: gh-pages # Ensure it deploys to the branch you created
       - name: Notify Discord 📣
         continue-on-error: true
-        if: github.event_name != 'pull_request' && env.DISCORD_WEBHOOK_URL != ''
+        if: github.event_name != 'pull_request'
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           pip install pyyaml
-          python3 << 'EOF'
-          import yaml, datetime, json, urllib.request, os, glob
+          PAYLOAD=$(python3 << 'PYEOF'
+          import yaml, datetime, json, os, glob
 
           plan_files = sorted(glob.glob("data/plans/*.yaml"))
           if not plan_files:
-              print("No plan files found, skipping notification")
+              print("{}")
               raise SystemExit(0)
 
           with open(plan_files[-1]) as f:
@@ -114,8 +116,8 @@ jobs:
           week_num = plan["week_number"]
           finalized = plan.get("finalized_at", "")
           if finalized:
-              dt = datetime.datetime.fromisoformat(finalized.replace("Z", "+00:00"))
-              date_str = dt.strftime("%Y-%m-%d")
+              dt = datetime.datetime.fromisoformat(str(finalized).replace("Z", "+00:00"))
+              date_str = dt.strftime("%Y-%m-%d") if hasattr(dt, 'strftime') else str(finalized)[:10]
           else:
               date_str = datetime.date.today().isoformat()
 
@@ -128,16 +130,17 @@ jobs:
               lines.append(f"**{day.capitalize()}** — {lunch} / {dinner}")
 
           schedule = "\n".join(lines)
-          plan_url = f"https://mallydietrich.github.io/meal-planning/plans/{date_str}-week-{week_num}-plan/"
+          plan_url = f"https://mallydietrich.github.io/meal-planning/plans/{date_str}-meal-plan/"
           message = f"📋 **Here's your weekly plan!**\n\n{schedule}\n\n🔗 Full plan & grocery list: {plan_url}"
 
-          payload = json.dumps({"content": message}).encode("utf-8")
-          req = urllib.request.Request(
-              os.environ["DISCORD_WEBHOOK_URL"],
-              data=payload,
-              headers={"Content-Type": "application/json"},
-              method="POST",
+          print(json.dumps({"content": message}))
+          PYEOF
           )
-          urllib.request.urlopen(req)
-          print(f"Discord notification sent for Week {week_num}")
-          EOF
+          if [ "$PAYLOAD" = "{}" ]; then
+            echo "No plan files found, skipping"
+            exit 0
+          fi
+          curl -s -o /dev/null -w "Discord webhook response: %{http_code}\n" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "$DISCORD_WEBHOOK_URL"
