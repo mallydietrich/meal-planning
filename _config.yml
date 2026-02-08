@@ -40,12 +40,8 @@ collections:
 # Jekyll Settings
 # -----------------------------------------------------------------------------
 # theme: minima # Removed to use al-folio local files
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
   - jekyll-link-attributes
   - jekyll-paginate-v2
-  - jekyll/scholar
   - jekyll-archives
   - jemoji
   - jekyll-email-protect
