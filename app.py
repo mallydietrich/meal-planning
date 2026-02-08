@@ -87,8 +87,9 @@ with tab1:
             date_str = today.isoformat()
             post_name = f"_news/{date_str}-meal-plan.md"
 
-            # Compute the Monday of this week for the title
-            monday = today - timedelta(days=today.weekday())
+            # Compute the upcoming Monday for the title
+            days_until_monday = (7 - today.weekday()) % 7
+            monday = today if today.weekday() == 0 else today + timedelta(days=days_until_monday)
             week_of_str = monday.strftime("%B %-d, %Y")
 
             # Build schedule table with recipe links
