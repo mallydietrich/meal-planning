@@ -29,7 +29,7 @@ cycles:
         lunch: "Seared Chicken & Kale Salad"
         dinner: "Dining Out"
       sunday:
-        lunch: "Pesto Chickpea Grain Bowls"
+        lunch: null
         dinner: "Oregano Steaks & Tzatziki Panzanella"
 
   - week: 2
@@ -53,8 +53,8 @@ cycles:
         lunch: "Curried Butter Beans"
         dinner: "Dining Out"
       sunday:
-        lunch: "Pesto Chickpea Grain Bowls"
-        dinner: "TJ's Dumpling Bake"
+        lunch: null
+        dinner: "Poblano Pepper & Onion Quesadilla"
 
   - week: 3
     days:
@@ -69,16 +69,16 @@ cycles:
         dinner: "Quick-Bake"
       thursday:
         lunch: "Relish"
-        dinner: "Spicy Mushroom & Onion Quesadillas"
+        dinner: "TJ's Dumpling Bake"
       friday:
         lunch: "Relish"
         dinner: "Oven-Baked Italian Sausage & Gnocchi"
       saturday:
-        lunch: "Southwest Dense Bean Salad"
+        lunch: null
         dinner: "Dining Out"
       sunday:
         lunch: null
-        dinner: "Poblano Pepper & Onion Quesadillas"
+        dinner: "Spicy Mushroom & Onion Quesadillas"
 
   - week: 4
     days:
@@ -98,7 +98,7 @@ cycles:
         lunch: "Relish"
         dinner: "Oven-Baked Pesto Gnocchi & Sausage"
       saturday:
-        lunch: "Dense Bean Salad: Miso"
+        lunch: "Pesto Chickpea Grain Bowls"
         dinner: "Dining Out"
       sunday:
         lunch: null
@@ -146,7 +146,7 @@ cycles:
         lunch: "Relish"
         dinner: "TJ's Orange Chicken"
       saturday:
-        lunch: null
+        lunch: "Honey Mustard Chicken & Farro Salad"
         dinner: "Dining Out"
       sunday:
         lunch: null
@@ -173,7 +173,7 @@ cycles:
         lunch: "Turkey Taco Bowls"
         dinner: "Dining Out"
       sunday:
-        lunch: "Honey Mustard Chicken & Farro Salad"
+        lunch: null
         dinner: "Calabrian Chicken & Orzo"
 
   - week: 8
