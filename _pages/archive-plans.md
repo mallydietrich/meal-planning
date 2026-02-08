@@ -1,9 +1,9 @@
 ---
-layout: archive
+layout: news
 title: Archive
 permalink: /archive/
 nav: true
 nav_order: 2
 ---
 
-A chronological history of all your past weekly meal plans.
+A chronological history of all your weekly meal plans.

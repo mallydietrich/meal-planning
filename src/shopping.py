@@ -45,10 +45,14 @@ class ShoppingCart:
         
         for key in sorted_keys:
             data = self.items[key]
-            _, _, display_str = format_quantity(data["quantity"], data["unit"])
+            _, unit, display_str = format_quantity(data["quantity"], data["unit"])
+            
+            # Combine quantity and unit
+            full_qty = f"{display_str} {unit}".strip()
+            
             result.append({
                 "name": data["display_name"],
-                "quantity": display_str,
+                "quantity": full_qty,
                 "food_group": data["food_group"] or "Other"
             })
         return result

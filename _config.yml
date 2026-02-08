@@ -29,10 +29,10 @@ repo_theme_dark: dark
 # Collections
 # -----------------------------------------------------------------------------
 collections:
-  recipes:
+  projects:
     output: true
     permalink: /recipes/:path/
-  plans: # We'll use plans as a collection instead of blog posts
+  news: 
     output: true
     permalink: /plans/:path/
 

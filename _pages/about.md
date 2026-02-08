@@ -4,14 +4,11 @@ title: 👩‍🍳 The Meal Engine
 permalink: /
 subtitle: <a href="https://mallydietrich.streamlit.app">Edit Plan</a>
 
-news: true  # show latest weekly plans (from _posts)
-selected_papers: false # we don't need this
+news: false  # don't show plan logs on home page
+selected_papers: false
 social: false
 ---
 
-Welcome to **The Meal Engine**. This site hosts your finalized weekly meal plans and recipe collection.
+Welcome to **The Meal Engine**. 
 
-### 📅 Next Steps
-1. Review the **Latest Plan** below.
-2. Check the **Grocery List** in the plan details.
-3. Browse the **Recipe Collection** for inspiration.
+Use the navigation bar above to view your **Recipes** or browse the **Plan Archive** to see your recent schedules and grocery lists.

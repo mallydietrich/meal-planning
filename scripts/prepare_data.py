@@ -24,20 +24,18 @@ def prepare_jekyll_data():
     plans_dir = repo_root / "data" / "plans"
     
     # al-folio target directories
-    posts_dir = repo_root / "_posts"
-    projects_dir = repo_root / "_projects" # We'll use projects for recipes
-    posts_dir.mkdir(exist_ok=True)
+    news_dir = repo_root / "_news"
+    projects_dir = repo_root / "_projects"
+    news_dir.mkdir(exist_ok=True)
     projects_dir.mkdir(exist_ok=True)
 
-    # 1. Sync recipes to _projects (al-folio uses this for grid view)
+    # 1. Sync recipes to _projects
     all_recipe_files = list((repo_root / "recipes").glob("*.md"))
     for rf in all_recipe_files:
         target = projects_dir / rf.name
         try:
             with open(rf, 'r') as f:
                 content = f.read()
-            # al-folio projects expect a 'category' and 'importance' sometimes
-            # We'll just ensure it has layout: page or similar
             if '---' in content:
                 parts = content.split('---', 2)
                 meta = yaml.safe_load(parts[1])
@@ -67,7 +65,6 @@ def prepare_jekyll_data():
     date_str = dt.strftime('%Y-%m-%d')
     
     post_name = f"{date_str}-week-{week_num}-plan.md"
-    post_path = posts_dir / post_name
     
     # Aggregate Shopping List
     cart = ShoppingCart()
@@ -93,17 +90,13 @@ def prepare_jekyll_data():
                     if title not in all_recipes_used:
                         all_recipes_used.append(title)
 
-    # Grocery List
+    # Grocery List (Unified)
     shopping_list = cart.get_aggregated_list()
     grocery_md = "## 🛒 Grocery List\n\n"
-    current_group = None
     for item in shopping_list:
-        if item['food_group'] != current_group:
-            current_group = item['food_group']
-            grocery_md += f"\n### {current_group}\n"
         grocery_md += f"- [ ] {item['quantity']} **{item['name']}**\n"
 
-    # Frontmatter for al-folio Post
+    # Frontmatter for Plan Post
     frontmatter = {
         "layout": "post",
         "title": f"Meal Plan: Week {week_num}",
@@ -111,6 +104,8 @@ def prepare_jekyll_data():
         "inline": False,
         "related_posts": False
     }
+    
+    post_path = news_dir / post_name
     
     with open(post_path, 'w') as f:
         f.write("---\n")
@@ -122,8 +117,6 @@ def prepare_jekyll_data():
         f.write(grocery_md)
 
     print(f"Jekyll Post created: {post_path}")
-
-    print(f"Post created: {post_path}")
 
 if __name__ == "__main__":
     prepare_jekyll_data()
