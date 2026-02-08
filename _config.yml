@@ -45,6 +45,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-link-attributes
   - jekyll-paginate-v2
+  - jekyll/scholar
 
 # al-folio specific settings (External libraries)
 cdn_url: "https://cdn.jsdelivr.net/npm"
