@@ -1,0 +1,24 @@
+week_number: 1
+days:
+  monday:
+    lunch: Hot Honey Pasta Salad
+    dinner: Oven-Baked Italian Sausage & Gnocchi
+  tuesday:
+    lunch: Relish
+    dinner: TJ's Orange Chicken
+  wednesday:
+    lunch: Relish
+    dinner: Quick-Bake
+  thursday:
+    lunch: Relish
+    dinner: Turkey Taco Bowls
+  friday:
+    lunch: Turkey Taco Bowls
+    dinner: Curried Butter Beans
+  saturday:
+    lunch: TBD
+    dinner: Dining Out
+  sunday:
+    lunch: TBD
+    dinner: TBD
+finalized_at: '2026-02-15'
